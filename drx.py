@@ -1,3 +1,17 @@
+from flask import Flask
+import threading
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    app.run(host='0.0.0.0', port=10000)
+
+# यह नया कोड रेंडर के पोर्ट एरर को शांत रखेगा
+threading.Thread(target=run).start()
 import telebot
 import json
 import requests
