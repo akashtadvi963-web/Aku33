@@ -7,7 +7,10 @@ app = Flask(__name__)
 # - Security Key taaki koi aur tumhari API use na kar sake
 API_AUTH_TOKEN = "DRX_POWER_ULTRA_V4"
 
-@app.route('/hit', methods=['GET'])
+@app.route('/')
+def home():
+    return "API is active!"
+    @app.route('/hit', methods=['GET'])
 def start_attack():
     # Auth Check
     token = request.args.get('token')
