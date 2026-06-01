@@ -2,32 +2,25 @@
 
 echo "🚀 DRX POWER SYSTEM STARTING..."
 
-# 1. Sabse pehle zaroori libraries install karega
+# 1. Libraries install karega
 echo "📦 Installing Python libraries..."
 pip install flask telebot requests psutil --quiet
 
-# 2. C Binary ko compile karega (High Power Mode)
+# 2. C Binary compile karega
 echo "⚙️ Compiling drx.c binary..."
 gcc drx.c -o drx -lpthread -O3
 chmod +x drx
 
-# 3. Purane sessions ko band karega agar koi chal raha ho
-echo "🧹 Cleaning old sessions..."
+# 3. Purane sessions band karega
+echo "✅ Cleaning old sessions..."
 pkill -f api.py
 pkill -f drx.py
 
-# 4. API ko background mein start karega (Port 8080)
+# 4. API background mein start karega
 echo "🌐 Starting Flask API on port 8080..."
-nohup python3 api.py > api_logs.txt 2>&1 &
+python3 api.py > api_logs.txt 2>&1 &
 sleep 2
 
-# 5. Telegram Bot ko background mein start karega
+# 5. Telegram Bot foreground mein start karega
 echo "🤖 Starting Telegram Bot..."
-nohup python3 drx.py > bot_logs.txt 2>&1 &
-
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "✅ SYSTEM IS NOW LIVE!"
-echo "📡 API Status: Running"
-echo "🤖 Bot Status: Running"
-echo "📝 Logs saved in: api_logs.txt and bot_logs.txt"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+python3 drx.py
